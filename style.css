@@ -1,40 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Mali:wght@400;700&display=swap');
 
 :root {
-  /* Пастельная светлая тема */
-  --bg-color: #fdf6e3; /* Нежный кремовый */
-  --surface: #ffffff;
-  --text: #333333;
-  --muted: #666666;
-  --accent: #ff7b54; /* Яркий оранжевый */
-  --accent-2: #4ecdc4; /* Бирюзовый */
-  --border: #333333; /* Контурные линии как в рисунках */
-  --radius: 20px 5px 25px 5px; /* Неровные углы */
+  /* Светлая тема: Пастельные каракули */
+  --bg-color: #fcf9f2;
+  /* Генерируем узор из домиков, солнышек и облаков прямо в коде (SVG) */
+  --bg-pattern: url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g opacity="0.3"><path d="M20,20 Q30,10 40,20 T60,20" fill="none" stroke="%23ffb74d" stroke-width="2"/><circle cx="30" cy="15" r="2" fill="%23ffb74d"/><path d="M150,50 l10,-10 l10,10 v15 h-20 z" fill="none" stroke="%234dd0e1" stroke-width="2"/><rect x="155" y="55" width="5" height="10" fill="none" stroke="%234dd0e1" stroke-width="1"/><path d="M100,150 C80,150 80,130 100,130 C110,130 120,140 120,150 C120,160 110,170 100,170" fill="none" stroke="%23ff8a65" stroke-width="2"/><path d="M50,100 Q70,80 90,100" fill="none" stroke="%23ba68c8" stroke-width="2"/><circle cx="180" cy="120" r="5" fill="%23fff176"/><path d="M10,180 l15,-15 M25,180 l-15,-15" stroke="%234db6ac" stroke-width="2"/></g></svg>');
+  
+  --surface: rgba(255, 255, 255, 0.95);
+  --text: #2c2c2c;
+  --muted: #5a5a5a;
+  --accent: #ff7b54;
+  --accent-2: #4ecdc4;
+  --accent-3: #ffd166;
+  --border: #2c2c2c;
+  --radius: 20px 5px 25px 5px;
   --font-heading: 'Comfortaa', cursive;
-  --font-body: 'Mali', cursive; /* Шрифт, похожий на детский почерк */
+  --font-body: 'Mali', cursive;
+  --shadow-color: #2c2c2c;
 }
 
 body.dark-theme {
-  /* Темная тема (как ночное небо) */
-  --bg-color: #2b2d42;
-  --surface: #353852;
-  --text: #edf2f4;
-  --muted: #a8b2c1;
-  --accent: #ffb703;
-  --accent-2: #8ecae6;
-  --border: #edf2f4;
+  /* Темная тема: Ночные каракули */
+  --bg-color: #1a1a24;
+  --bg-pattern: url('data:image/svg+xml;utf8,<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><g opacity="0.15"><path d="M20,20 Q30,10 40,20 T60,20" fill="none" stroke="%23ffffff" stroke-width="2"/><circle cx="30" cy="15" r="2" fill="%23ffffff"/><path d="M150,50 l10,-10 l10,10 v15 h-20 z" fill="none" stroke="%23ffffff" stroke-width="2"/><rect x="155" y="55" width="5" height="10" fill="none" stroke="%23ffffff" stroke-width="1"/><path d="M100,150 C80,150 80,130 100,130 C110,130 120,140 120,150 C120,160 110,170 100,170" fill="none" stroke="%23ffffff" stroke-width="2"/><path d="M50,100 Q70,80 90,100" fill="none" stroke="%23ffffff" stroke-width="2"/><circle cx="180" cy="120" r="5" fill="%23ffffff"/><path d="M10,180 l15,-15 M25,180 l-15,-15" stroke="%23ffffff" stroke-width="2"/></g></svg>');
+  
+  --surface: #2a2a38;
+  --text: #f0f0f0;
+  --muted: #b0b0b0;
+  --accent: #ffb74d;
+  --accent-2: #4dd0e1;
+  --accent-3: #ffd54f;
+  --border: #f0f0f0;
+  --shadow-color: #000000;
 }
 
 * { box-sizing: border-box; }
 
-/* Фон с эффектом каракулей */
 body {
   margin: 0;
   background-color: var(--bg-color);
-  background-image: 
-    radial-gradient(circle at 15% 50%, rgba(255, 123, 84, 0.1) 0%, transparent 25%),
-    radial-gradient(circle at 85% 30%, rgba(78, 205, 196, 0.1) 0%, transparent 25%),
-    url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q 20 5 30 15 T 50 10" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round"/><circle cx="80" cy="20" r="2" fill="%23cccccc"/><path d="M70 80 L 75 90 L 85 85" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round"/></svg>');
+  background-image: var(--bg-pattern);
+  background-size: 300px 300px; /* Размер узора */
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -46,46 +52,45 @@ a { text-decoration: none; color: inherit; }
 /* Шапка */
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 20px 30px; 
+  padding: 15px 25px; 
   background: var(--surface);
   border-bottom: 3px dashed var(--border);
   position: sticky; top: 0; z-index: 100;
-  border-radius: 0 0 20px 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 .logo { 
   font-family: var(--font-heading); 
-  font-size: 24px; 
+  font-size: 22px; 
   font-weight: 700; 
   color: var(--accent); 
 }
 
-/* Кнопки */
 .btn {
   font-family: var(--font-heading); 
-  font-size: 15px; 
-  padding: 10px 20px;
+  font-size: 14px; 
+  padding: 8px 16px;
   border: 3px solid var(--border); 
   background: var(--bg-color); 
   color: var(--text);
-  border-radius: 30px 10px 30px 10px; /* Кривоватые кнопки */
+  border-radius: 30px 10px 30px 10px; 
   cursor: pointer; 
   transition: all 0.2s; 
   font-weight: 700;
-  box-shadow: 3px 3px 0 var(--border); /* Тень как от карандаша */
+  box-shadow: 3px 3px 0 var(--border); 
 }
 .btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--border); }
-.btn-round { width: 44px; height: 44px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; }
+.btn-round { width: 40px; height: 40px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; }
 
 .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
 
 .hero { text-align: center; margin-bottom: 40px; }
 .hero h1 { 
   font-family: var(--font-heading); 
-  font-size: 38px; 
+  font-size: 36px; 
   margin: 10px 0; 
   font-weight: 700; 
   color: var(--text); 
-  text-shadow: 2px 2px 0 var(--accent-2); 
+  text-shadow: 2px 2px 0 var(--accent-3); 
 }
 .hero-sub { color: var(--muted); font-size: 18px; font-weight: 700; }
 
@@ -95,7 +100,7 @@ a { text-decoration: none; color: inherit; }
   display: flex; align-items: center; gap: 20px; 
   background: var(--surface); 
   border: 3px solid var(--border); 
-  border-radius: var(--radius); /* Неровные углы */
+  border-radius: var(--radius); 
   padding: 20px;
   transition: box-shadow 0.3s, transform 0.3s;
   box-shadow: 5px 5px 0 var(--border);
@@ -111,7 +116,7 @@ a { text-decoration: none; color: inherit; }
   display: flex; flex-direction: column; 
   background: var(--surface); 
   border: 3px solid var(--border); 
-  border-radius: 5px 25px 5px 25px; /* Другой неровный угол */
+  border-radius: 5px 25px 5px 25px; 
   padding: 25px; 
   color: var(--text);
   transition: box-shadow 0.3s, transform 0.3s;
@@ -126,7 +131,7 @@ a { text-decoration: none; color: inherit; }
   border: 2px solid var(--border);
 }
 .card-title { font-family: var(--font-heading); font-size: 22px; margin: 0 0 10px; font-weight: 700; }
-.card-desc { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; flex-grow: 1; font-weight: 700; } /* Жирный текст описания */
+.card-desc { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; flex-grow: 1; font-weight: 700; }
 
 /* Страница автора */
 .writer-container { max-width: 900px; }
@@ -137,7 +142,7 @@ a { text-decoration: none; color: inherit; }
 .writer-portrait { width: 320px; height: auto; border-radius: var(--radius); border: 4px solid var(--border); box-shadow: 8px 8px 0 var(--border); flex-shrink: 0; object-fit: cover; }
 .writer-info h1 { font-family: var(--font-heading); font-size: 34px; margin-top: 0; margin-bottom: 10px; font-weight: 700; }
 .writer-years { font-size: 18px; color: var(--muted); margin-bottom: 20px; font-weight: 700; }
-.writer-bio { font-size: 17px; line-height: 1.8; text-indent: 1.5em; text-align: justify; font-weight: 700; } /* Жирный текст биографии */
+.writer-bio { font-size: 17px; line-height: 1.8; text-indent: 1.5em; text-align: justify; font-weight: 700; }
 .works-title { font-family: var(--font-heading); font-size: 28px; margin-top: 30px; margin-bottom: 25px; border-bottom: 4px dashed var(--border); padding-bottom: 10px; font-weight: 700; }
 
 /* Страница чтения */
@@ -155,7 +160,8 @@ a { text-decoration: none; color: inherit; }
 .reader-text.poem { text-indent: 0; text-align: left; padding-left: 20px; }
 .reader-text.poem p { text-indent: 0; margin: 0 0 0.5em; text-align: left; }
 
-.questions { margin-top: 50px; padding: 30px; background: rgba(78, 205, 196, 0.15); border-radius: var(--radius); border: 3px dashed var(--accent-2); }
+.questions { margin-top: 50px; padding: 30px; background: var(--accent-3); color: #2c2c2c; border-radius: var(--radius); border: 3px dashed var(--border); }
+body.dark-theme .questions { background: rgba(255, 213, 79, 0.2); color: var(--text); }
 .questions h2 { font-family: var(--font-heading); font-size: 24px; margin: 0 0 20px; font-weight: 700; }
 .questions ol { padding-left: 20px; margin: 0; }
 .questions li { font-size: 16px; line-height: 1.6; margin-bottom: 15px; font-weight: 700; }
@@ -167,10 +173,12 @@ a { text-decoration: none; color: inherit; }
 .hidden { display: none; }
 
 @media (max-width: 768px) {
+  .topbar { padding: 15px; }
+  .logo { font-size: 18px; }
   .writer-header { flex-direction: column; align-items: center; text-align: center; }
   .writer-bio { text-indent: 0; text-align: left; }
   .writer-portrait { width: 100%; max-width: 280px; } 
   .reader { padding: 25px; }
   .reader h1 { font-size: 28px; }
   .reader-nav-top, .reader-nav-bottom { flex-direction: column; align-items: flex-start; }
-}
+  }
