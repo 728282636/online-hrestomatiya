@@ -1,12 +1,10 @@
 function initTheme() {
   const themeToggle = document.getElementById("themeToggle");
   const currentTheme = localStorage.getItem("theme");
-  
   if (currentTheme === "dark") {
     document.body.classList.add("dark-theme");
     if (themeToggle) themeToggle.textContent = "Светлая книга";
   }
-
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       document.body.classList.toggle("dark-theme");
