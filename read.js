@@ -1,3 +1,20 @@
+function initTheme() {
+  const themeToggle = document.getElementById("themeToggle");
+  const currentTheme = localStorage.getItem("theme");
+  if (currentTheme === "dark") {
+    document.body.classList.add("dark-theme");
+    if (themeToggle) themeToggle.textContent = "Светлая книга";
+  }
+  if (themeToggle) {
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark-theme");
+      const isDark = document.body.classList.contains("dark-theme");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      themeToggle.textContent = isDark ? "Светлая книга" : "Тёмная книга";
+    });
+  }
+}
+
 let fontSize = Number(localStorage.getItem("readerFontSize")) || 20;
 
 function applyFontSize() {
@@ -45,4 +62,7 @@ function loadWork() {
   document.getElementById("fontPlus").addEventListener("click", () => { fontSize = Math.min(34, fontSize + 2); applyFontSize(); });
 }
 
-document.addEventListener("DOMContentLoaded", loadWork);
+document.addEventListener("DOMContentLoaded", () => {
+  initTheme();
+  loadWork();
+});
