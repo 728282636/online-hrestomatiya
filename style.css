@@ -1,101 +1,81 @@
-/* Подключаем детские шрифты с поддержкой кириллицы */
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Hachi+Maru+Pop&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Mali:wght@400;700&display=swap');
 
 :root {
-  /* Светлая тема: "Детский сад" */
-  --bg-color: #fef9e7; /* Теплый желтоватый фон */
-  --bg-image: url('https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?q=80&w=2000&auto=format&fit=crop'); /* Пример детского фона (можно заменить на свой) */
-  --surface: rgba(255, 255, 255, 0.92); /* Полупрозрачные карточки, чтобы фон просвечивал */
-  --text: #3d3b38;
-  --muted: #7a7570;
+  /* Пастельная светлая тема */
+  --bg-color: #fdf6e3; /* Нежный кремовый */
+  --surface: #ffffff;
+  --text: #333333;
+  --muted: #666666;
   --accent: #ff7b54; /* Яркий оранжевый */
   --accent-2: #4ecdc4; /* Бирюзовый */
-  --accent-3: #ffe66d; /* Желтый */
-  --border: #e0d4c3;
-  --radius: 24px; /* Очень скругленные углы */
+  --border: #333333; /* Контурные линии как в рисунках */
+  --radius: 20px 5px 25px 5px; /* Неровные углы */
   --font-heading: 'Comfortaa', cursive;
-  --font-body: 'Hachi Maru Pop', cursive; /* Рукописный шрифт для текста */
+  --font-body: 'Mali', cursive; /* Шрифт, похожий на детский почерк */
 }
 
 body.dark-theme {
-  /* Темная тема: "Ночная сказка" */
-  --bg-color: #1e1c1a;
-  --bg-image: none;
-  --surface: #2a2725;
-  --text: #f3efe7;
-  --muted: #a8a199;
-  --accent: #ff9f80;
-  --accent-2: #6bcfc7;
-  --accent-3: #ffe066;
-  --border: #443d38;
+  /* Темная тема (как ночное небо) */
+  --bg-color: #2b2d42;
+  --surface: #353852;
+  --text: #edf2f4;
+  --muted: #a8b2c1;
+  --accent: #ffb703;
+  --accent-2: #8ecae6;
+  --border: #edf2f4;
 }
 
 * { box-sizing: border-box; }
 
+/* Фон с эффектом каракулей */
 body {
   margin: 0;
   background-color: var(--bg-color);
-  background-image: var(--bg-image);
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(255, 123, 84, 0.1) 0%, transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(78, 205, 196, 0.1) 0%, transparent 25%),
+    url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M10 10 Q 20 5 30 15 T 50 10" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round"/><circle cx="80" cy="20" r="2" fill="%23cccccc"/><path d="M70 80 L 75 90 L 85 85" fill="none" stroke="%23cccccc" stroke-width="1" stroke-linecap="round"/></svg>');
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
 }
 
-/* Делаем фон полупрозрачным для лучшей читаемости */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(254, 249, 231, 0.6); /* Светлая вуаль */
-  z-index: -1;
-}
-body.dark-theme::before {
-  background: rgba(30, 28, 26, 0.85); /* Темная вуаль */
-}
-
 a { text-decoration: none; color: inherit; }
 
-/* ЗАКРЕПЛЕННАЯ ШАПКА */
+/* Шапка */
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 30px; 
+  padding: 20px 30px; 
   background: var(--surface);
-  backdrop-filter: blur(10px); /* Эффект матового стекла */
   border-bottom: 3px dashed var(--border);
-  position: sticky; /* Надежное закрепление */
-  top: 0; 
-  z-index: 100;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  position: sticky; top: 0; z-index: 100;
+  border-radius: 0 0 20px 20px;
 }
 .logo { 
   font-family: var(--font-heading); 
   font-size: 24px; 
   font-weight: 700; 
   color: var(--accent); 
-  letter-spacing: 0.5px; 
 }
 
+/* Кнопки */
 .btn {
   font-family: var(--font-heading); 
   font-size: 15px; 
   padding: 10px 20px;
-  border: 2px dashed var(--border); 
+  border: 3px solid var(--border); 
   background: var(--bg-color); 
   color: var(--text);
-  border-radius: 30px; 
+  border-radius: 30px 10px 30px 10px; /* Кривоватые кнопки */
   cursor: pointer; 
   transition: all 0.2s; 
   font-weight: 700;
+  box-shadow: 3px 3px 0 var(--border); /* Тень как от карандаша */
 }
-.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
-.btn-toggle { font-weight: 700; }
+.btn:hover { transform: translate(2px, 2px); box-shadow: 1px 1px 0 var(--border); }
 .btn-round { width: 44px; height: 44px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; }
 
-/* Контент */
 .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
 
 .hero { text-align: center; margin-bottom: 40px; }
@@ -104,75 +84,70 @@ a { text-decoration: none; color: inherit; }
   font-size: 38px; 
   margin: 10px 0; 
   font-weight: 700; 
-  color: var(--accent); 
-  text-shadow: 2px 2px 0px #fff; /* Обводка для читаемости */
+  color: var(--text); 
+  text-shadow: 2px 2px 0 var(--accent-2); 
 }
-body.dark-theme .hero h1 { text-shadow: none; }
-.hero-sub { 
-  color: var(--muted); 
-  font-size: 18px; 
-  font-family: var(--font-heading);
-  font-weight: 400;
-}
+.hero-sub { color: var(--muted); font-size: 18px; font-weight: 700; }
 
 /* Карточки авторов */
 .authors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 .author-card {
   display: flex; align-items: center; gap: 20px; 
   background: var(--surface); 
-  border: 3px dashed var(--border); 
-  border-radius: var(--radius); 
+  border: 3px solid var(--border); 
+  border-radius: var(--radius); /* Неровные углы */
   padding: 20px;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
-  backdrop-filter: blur(5px);
+  transition: box-shadow 0.3s, transform 0.3s;
+  box-shadow: 5px 5px 0 var(--border);
 }
-.author-card:hover { transform: translateY(-6px) rotate(1deg); border-color: var(--accent); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
-.author-thumb { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent-3); flex-shrink: 0; }
-.author-card-info h2 { font-family: var(--font-heading); font-size: 22px; margin: 0 0 5px; font-weight: 700; color: var(--text); }
-.author-card-info p { margin: 0; font-size: 15px; color: var(--muted); font-family: var(--font-body); }
+.author-card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--accent); }
+.author-thumb { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--border); flex-shrink: 0; }
+.author-card-info h2 { font-family: var(--font-heading); font-size: 22px; margin: 0 0 5px; font-weight: 700; }
+.author-card-info p { margin: 0; font-size: 15px; color: var(--muted); font-weight: 700; }
 
 /* Карточки произведений */
 .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
 .card {
   display: flex; flex-direction: column; 
   background: var(--surface); 
-  border: 3px dashed var(--border); 
-  border-radius: var(--radius); 
+  border: 3px solid var(--border); 
+  border-radius: 5px 25px 5px 25px; /* Другой неровный угол */
   padding: 25px; 
   color: var(--text);
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
-  backdrop-filter: blur(5px);
+  transition: box-shadow 0.3s, transform 0.3s;
+  box-shadow: 5px 5px 0 var(--border);
 }
-.card:hover { transform: translateY(-6px) rotate(-1deg); border-color: var(--accent-2); box-shadow: 0 12px 25px rgba(0,0,0,0.1); }
+.card:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--accent-2); }
 .card-badge { 
   display: inline-block; font-size: 13px; font-weight: 700; 
-  background: var(--accent-3); color: var(--text); 
-  padding: 5px 12px; border-radius: 20px; margin-bottom: 15px; 
+  background: var(--accent-2); color: #fff; 
+  padding: 5px 12px; border-radius: 15px 5px 15px 5px; margin-bottom: 15px; 
   align-self: flex-start; font-family: var(--font-heading);
+  border: 2px solid var(--border);
 }
 .card-title { font-family: var(--font-heading); font-size: 22px; margin: 0 0 10px; font-weight: 700; }
-.card-desc { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; flex-grow: 1; font-family: var(--font-body); }
+.card-desc { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; flex-grow: 1; font-weight: 700; } /* Жирный текст описания */
 
 /* Страница автора */
 .writer-container { max-width: 900px; }
-.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); font-weight: 700; font-family: var(--font-heading); font-size: 16px; border-bottom: 2px dashed var(--accent); }
-.back-link:hover { border-bottom-style: solid; }
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--text); font-weight: 700; font-family: var(--font-heading); font-size: 16px; border-bottom: 3px dashed var(--accent); }
+.back-link:hover { color: var(--accent); }
 
 .writer-header { display: flex; gap: 40px; align-items: flex-start; margin-bottom: 50px; }
-.writer-portrait { width: 320px; height: auto; border-radius: var(--radius); border: 5px solid var(--accent-2); box-shadow: 0 8px 20px rgba(0,0,0,0.1); flex-shrink: 0; object-fit: cover; }
-.writer-info h1 { font-family: var(--font-heading); font-size: 34px; margin-top: 0; margin-bottom: 10px; font-weight: 700; color: var(--text); }
-.writer-years { font-size: 18px; color: var(--muted); margin-bottom: 20px; font-family: var(--font-heading); }
-.writer-bio { font-size: 17px; line-height: 1.8; text-indent: 1.5em; text-align: justify; font-family: var(--font-body); }
-.works-title { font-family: var(--font-heading); font-size: 28px; margin-top: 30px; margin-bottom: 25px; border-bottom: 3px dashed var(--border); padding-bottom: 10px; font-weight: 700; color: var(--accent); }
+.writer-portrait { width: 320px; height: auto; border-radius: var(--radius); border: 4px solid var(--border); box-shadow: 8px 8px 0 var(--border); flex-shrink: 0; object-fit: cover; }
+.writer-info h1 { font-family: var(--font-heading); font-size: 34px; margin-top: 0; margin-bottom: 10px; font-weight: 700; }
+.writer-years { font-size: 18px; color: var(--muted); margin-bottom: 20px; font-weight: 700; }
+.writer-bio { font-size: 17px; line-height: 1.8; text-indent: 1.5em; text-align: justify; font-weight: 700; } /* Жирный текст биографии */
+.works-title { font-family: var(--font-heading); font-size: 28px; margin-top: 30px; margin-bottom: 25px; border-bottom: 4px dashed var(--border); padding-bottom: 10px; font-weight: 700; }
 
 /* Страница чтения */
 .reader-container { max-width: 800px; }
-.reader { background: var(--surface); border: 3px dashed var(--border); border-radius: var(--radius); padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); backdrop-filter: blur(5px); }
-.reader h1 { font-family: var(--font-heading); font-size: 36px; margin: 0 0 10px; text-align: center; font-weight: 700; color: var(--accent); }
-.reader-author { font-size: 20px; color: var(--muted); margin: 0 0 5px; text-align: center; font-family: var(--font-heading); }
-.reader-meta { font-size: 14px; color: var(--accent-2); margin: 0 0 35px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; font-family: var(--font-heading); }
+.reader { background: var(--surface); border: 3px solid var(--border); border-radius: var(--radius); padding: 50px; box-shadow: 8px 8px 0 var(--border); }
+.reader h1 { font-family: var(--font-heading); font-size: 36px; margin: 0 0 10px; text-align: center; font-weight: 700; }
+.reader-author { font-size: 20px; color: var(--muted); margin: 0 0 5px; text-align: center; font-weight: 700; }
+.reader-meta { font-size: 14px; color: var(--text); margin: 0 0 35px; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
 
-.reader-toolbar { display: flex; justify-content: flex-end; align-items: center; padding: 15px 0; border-bottom: 2px dashed var(--border); margin-bottom: 30px; }
+.reader-toolbar { display: flex; justify-content: flex-end; align-items: center; padding: 15px 0; border-bottom: 3px dashed var(--border); margin-bottom: 30px; }
 .font-controls { display: flex; gap: 10px; }
 
 .reader-text { font-family: var(--font-body); font-size: 20px; line-height: 1.9; white-space: pre-wrap; text-align: justify; }
@@ -180,10 +155,10 @@ body.dark-theme .hero h1 { text-shadow: none; }
 .reader-text.poem { text-indent: 0; text-align: left; padding-left: 20px; }
 .reader-text.poem p { text-indent: 0; margin: 0 0 0.5em; text-align: left; }
 
-.questions { margin-top: 50px; padding: 30px; background: rgba(255, 230, 109, 0.3); border-radius: var(--radius); border: 2px dashed var(--accent-3); }
-.questions h2 { font-family: var(--font-heading); font-size: 24px; margin: 0 0 20px; font-weight: 700; color: var(--accent); }
+.questions { margin-top: 50px; padding: 30px; background: rgba(78, 205, 196, 0.15); border-radius: var(--radius); border: 3px dashed var(--accent-2); }
+.questions h2 { font-family: var(--font-heading); font-size: 24px; margin: 0 0 20px; font-weight: 700; }
 .questions ol { padding-left: 20px; margin: 0; }
-.questions li { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: var(--text); font-family: var(--font-body); }
+.questions li { font-size: 16px; line-height: 1.6; margin-bottom: 15px; font-weight: 700; }
 
 .reader-nav-top { display: flex; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
 .reader-nav-bottom { display: flex; justify-content: space-between; margin-top: 50px; border-top: 3px dashed var(--border); padding-top: 30px; flex-wrap: wrap; gap: 15px; }
@@ -192,8 +167,6 @@ body.dark-theme .hero h1 { text-shadow: none; }
 .hidden { display: none; }
 
 @media (max-width: 768px) {
-  .topbar { padding: 15px 20px; }
-  .hero h1 { font-size: 28px; }
   .writer-header { flex-direction: column; align-items: center; text-align: center; }
   .writer-bio { text-indent: 0; text-align: left; }
   .writer-portrait { width: 100%; max-width: 280px; } 
