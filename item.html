@@ -7,7 +7,15 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="container writer-container" style="padding-top: 40px;">
+  <!-- Шапка нужна для кнопки темы -->
+  <header class="topbar">
+    <a href="index.html" class="logo">Литературная хрестоматия</a>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="btn btn-toggle">Тёмная книга</button>
+    </div>
+  </header>
+
+  <main class="container writer-container">
     <a href="index.html" class="back-link">← Вернуться к списку авторов</a>
 
     <section class="writer-header">
@@ -26,4 +34,4 @@
   <script src="core.js"></script>
   <script src="item.js"></script>
 </body>
-</html>
+    </html>
