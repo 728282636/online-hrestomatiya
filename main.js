@@ -1,18 +1,3 @@
-function applyKidsMode() {
-  const kids = localStorage.getItem("kidsMode") === "1";
-  document.body.classList.toggle("kids", kids);
-  const btn = document.getElementById("kidsToggle");
-  if (btn) btn.textContent = kids ? "Обычный режим" : "Детский режим";
-}
-function initKidsToggle() {
-  const btn = document.getElementById("kidsToggle");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    const kids = localStorage.getItem("kidsMode") === "1";
-    localStorage.setItem("kidsMode", kids ? "0" : "1");
-    applyKidsMode();
-  });
-}
 function renderAuthors() {
   const grid = document.getElementById("authorsCatalog");
   if (!grid) return;
@@ -23,5 +8,5 @@ function renderAuthors() {
     </a>
   `).join("");
 }
-document.addEventListener("DOMContentLoaded", () => { applyKidsMode(); initKidsToggle(); renderAuthors(); });
 
+document.addEventListener("DOMContentLoaded", renderAuthors);
