@@ -1,20 +1,3 @@
-function initTheme() {
-  const themeToggle = document.getElementById("themeToggle");
-  const currentTheme = localStorage.getItem("theme");
-  if (currentTheme === "dark") {
-    document.body.classList.add("dark-theme");
-    if (themeToggle) themeToggle.textContent = "Светлая книга";
-  }
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("dark-theme");
-      const isDark = document.body.classList.contains("dark-theme");
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-      themeToggle.textContent = isDark ? "Светлая книга" : "Тёмная книга";
-    });
-  }
-}
-
 function loadAuthor() {
   const params = new URLSearchParams(location.search);
   const author = AUTHORS.find(a => a.id === params.get("id"));
@@ -35,7 +18,4 @@ function loadAuthor() {
   `).join("");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initTheme();
-  loadAuthor();
-});
+document.addEventListener("DOMContentLoaded", loadAuthor);
