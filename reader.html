@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чтение · Детская хрестоматия</title>
+  <title>Чтение · Литературная хрестоматия</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="topbar">
-    <a href="index.html" class="logo">Детская хрестоматия</a>
-    <div class="topbar-actions">
-      <button id="kidsToggle" class="btn btn-toggle">Детский режим</button>
-    </div>
+    <a href="index.html" class="logo">Литературная хрестоматия</a>
   </header>
 
   <main class="container reader-container">
-    <a href="#" class="back-link" id="topBackLink">← Вернуться к списку произведений</a>
+    <!-- Навигация сверху -->
+    <div class="reader-nav-top">
+      <a href="index.html" class="back-link">← Вернуться к списку авторов</a>
+      <a href="#" class="back-link" id="topBackLink">← Вернуться к списку произведений</a>
+    </div>
 
     <article class="reader">
       <h1 id="title"></h1>
@@ -23,8 +24,6 @@
       <p id="meta" class="reader-meta"></p>
 
       <div class="reader-toolbar">
-        <button id="speakBtn" class="btn btn-primary">Читать вслух</button>
-        <button id="stopBtn" class="btn">Остановить</button>
         <div class="font-controls">
           <button id="fontMinus" class="btn btn-round">A−</button>
           <button id="fontPlus" class="btn btn-round">A+</button>
@@ -38,7 +37,9 @@
         <ol id="questionsList"></ol>
       </section>
 
-      <div class="reader-footer">
+      <!-- Навигация снизу -->
+      <div class="reader-nav-bottom">
+        <a href="index.html" class="back-link">← Вернуться к списку авторов</a>
         <a href="#" class="back-link" id="bottomBackLink">← Вернуться к списку произведений</a>
       </div>
     </article>
@@ -47,4 +48,4 @@
   <script src="core.js"></script>
   <script src="read.js"></script>
 </body>
-</html>
+  </html>
