@@ -9,10 +9,12 @@
 <body>
   <header class="topbar">
     <a href="index.html" class="logo">Литературная хрестоматия</a>
+    <div class="topbar-actions">
+      <button id="themeToggle" class="btn btn-toggle">Тёмная книга</button>
+    </div>
   </header>
 
   <main class="container reader-container">
-    <!-- Навигация сверху -->
     <div class="reader-nav-top">
       <a href="index.html" class="back-link">← Вернуться к списку авторов</a>
       <a href="#" class="back-link" id="topBackLink">← Вернуться к списку произведений</a>
@@ -37,7 +39,6 @@
         <ol id="questionsList"></ol>
       </section>
 
-      <!-- Навигация снизу -->
       <div class="reader-nav-bottom">
         <a href="index.html" class="back-link">← Вернуться к списку авторов</a>
         <a href="#" class="back-link" id="bottomBackLink">← Вернуться к списку произведений</a>
@@ -48,4 +49,4 @@
   <script src="core.js"></script>
   <script src="read.js"></script>
 </body>
-  </html>
+</html>
