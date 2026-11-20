@@ -1,145 +1,143 @@
 :root {
-  /* Светлая тема (уютная библиотека) */
-  --bg: #f4ecd8;
-  --bg-pattern: repeating-linear-gradient(45deg, rgba(0,0,0,0.02) 0, rgba(0,0,0,0.02) 2px, transparent 2px, transparent 4px);
-  --surface: #fffaf0;
-  --text: #2b231d;
-  --muted: #7a6b5d;
-  --accent: #9c5a3c;
-  --accent-soft: #ebdcd0;
-  --border: #d8c8b6;
-  --shadow: rgba(43, 35, 29, 0.1);
-  
-  --radius: 6px;
-  --font-body: 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
-  --font-ui: 'Palatino Linotype', 'Book Antiqua', 'Georgia', serif;
+  /* Светлая тема: пастельный, детский, уютный */
+  --bg: #fdfaf6;
+  --surface: #ffffff;
+  --text: #3d3b38;
+  --muted: #8e8a84;
+  --accent: #e2725b; /* Терракотовый/пастельный красный */
+  --accent-soft: #fdf0ec;
+  --border: #e6e1d8;
+  --radius: 16px;
+  --font-body: 'Palatino Linotype', 'Georgia', serif;
+  --font-ui: 'Trebuchet MS', 'Comic Sans MS', sans-serif; /* Округлый шрифт */
   --reader-size: 20px;
 }
 
 body.dark-theme {
-  /* Темная тема (вечернее чтение при свечах) */
-  --bg: #1c1815;
-  --bg-pattern: none;
-  --surface: #2a2420;
-  --text: #f0e6d8;
-  --muted: #a69888;
-  --accent: #dca86a;
-  --accent-soft: #3d332b;
-  --border: #4a3f36;
-  --shadow: rgba(0, 0, 0, 0.5);
+  /* Темная тема: "Ночная книга" */
+  --bg: #1e1c1a;
+  --surface: #2a2725;
+  --text: #f3efe7;
+  --muted: #a8a199;
+  --accent: #e89b86;
+  --accent-soft: #3d332f;
+  --border: #443d38;
+  --radius: 16px;
 }
 
 * { box-sizing: border-box; }
 body {
   margin: 0;
   background-color: var(--bg);
-  background-image: var(--bg-pattern);
   color: var(--text);
   font-family: var(--font-ui);
-  line-height: 1.7;
+  line-height: 1.6;
   transition: background-color 0.4s, color 0.4s;
 }
 a { text-decoration: none; color: inherit; }
 
+/* ЗАКРЕПЛЕННАЯ ШАПКА */
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px 20px; background: var(--surface);
-  border-bottom: 2px solid var(--border);
-  box-shadow: 0 2px 10px var(--shadow);
-  position: sticky; top: 0; z-index: 10;
-  transition: background-color 0.4s, border-color 0.4s;
+  padding: 16px 30px; background: var(--surface);
+  border-bottom: 2px dashed var(--border);
+  position: fixed; /* Фиксируем наверху */
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: background-color 0.4s;
 }
-.logo { font-family: var(--font-body); font-size: 24px; font-weight: bold; color: var(--text); letter-spacing: 1px; }
+.logo { font-family: var(--font-body); font-size: 24px; font-weight: bold; color: var(--accent); letter-spacing: 0.5px; }
 
 .btn {
-  font-family: var(--font-ui); font-size: 15px; padding: 8px 16px;
-  border: 1px solid var(--border); background: var(--surface); color: var(--text);
-  border-radius: var(--radius); cursor: pointer; transition: all 0.2s;
+  font-family: var(--font-ui); font-size: 15px; padding: 8px 18px;
+  border: 2px dashed var(--border); background: var(--bg); color: var(--text);
+  border-radius: 30px; cursor: pointer; transition: all 0.2s; font-weight: bold;
 }
-.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn:hover { border-color: var(--accent); color: var(--accent); background: var(--surface); }
 .btn-toggle { font-weight: bold; }
-.btn-round { width: 40px; height: 40px; border-radius: 50%; padding: 0; font-weight: bold; }
+.btn-round { width: 40px; height: 40px; border-radius: 50%; padding: 0; font-weight: bold; display: flex; align-items: center; justify-content: center; }
 
-.container { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
+/* Отступ сверху, чтобы контент не заезжал под фиксированную шапку */
+.container { max-width: 1000px; margin: 0 auto; padding: 100px 20px 60px; }
 
 .hero { text-align: center; margin-bottom: 40px; }
 .hero h1 { font-family: var(--font-body); font-size: 36px; margin: 10px 0; font-weight: normal; color: var(--text); }
-.hero-sub { color: var(--muted); font-style: italic; font-size: 18px; }
+.hero-sub { color: var(--muted); font-size: 18px; }
 
+/* Карточки авторов в стиле пастельных флажков */
 .authors-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
 .author-card {
   display: flex; align-items: center; gap: 20px; background: var(--surface);
-  border: 1px solid var(--border); border-left: 5px solid var(--accent); 
-  border-radius: var(--radius); padding: 20px;
-  transition: box-shadow 0.3s, transform 0.3s;
-  box-shadow: 0 4px 6px var(--shadow);
+  border: 2px dashed var(--border); border-radius: var(--radius); padding: 20px;
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
 }
-.author-card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px var(--shadow); }
-.author-thumb { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); flex-shrink: 0; }
+.author-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+.author-thumb { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-soft); flex-shrink: 0; }
 .author-card-info h2 { font-family: var(--font-body); font-size: 22px; margin: 0 0 5px; font-weight: normal; color: var(--text); }
-.author-card-info p { margin: 0; font-size: 15px; color: var(--muted); font-style: italic; }
+.author-card-info p { margin: 0; font-size: 15px; color: var(--muted); }
 
+/* Карточки произведений */
 .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
 .card {
   display: flex; flex-direction: column; background: var(--surface); 
-  border: 1px solid var(--border); border-top: 4px solid var(--accent);
-  border-radius: var(--radius); padding: 20px; color: var(--text);
-  box-shadow: 0 4px 6px var(--shadow);
-  transition: box-shadow 0.3s, transform 0.3s;
+  border: 2px dashed var(--border); border-radius: var(--radius); padding: 25px; color: var(--text);
+  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
 }
-.card:hover { transform: translateY(-3px); box-shadow: 0 8px 20px var(--shadow); }
+.card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
 .card-badge { 
-  display: inline-block; font-size: 12px; font-weight: bold; 
+  display: inline-block; font-size: 13px; font-weight: bold; 
   background: var(--accent-soft); color: var(--accent); 
   padding: 5px 12px; border-radius: 20px; margin-bottom: 15px; 
-  align-self: flex-start; text-transform: uppercase; letter-spacing: 0.5px;
+  align-self: flex-start; font-family: var(--font-ui);
 }
 .card-title { font-family: var(--font-body); font-size: 22px; margin: 0 0 10px; font-weight: normal; }
 .card-desc { font-size: 15px; color: var(--muted); margin: 0; line-height: 1.5; flex-grow: 1; }
 
 .writer-container { max-width: 900px; }
-.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); font-weight: bold; font-family: var(--font-ui); font-size: 16px; }
-.back-link:hover { text-decoration: underline; }
+.back-link { display: inline-block; margin-bottom: 20px; color: var(--accent); font-weight: bold; font-family: var(--font-ui); font-size: 16px; border-bottom: 1px dashed var(--accent); }
+.back-link:hover { border-bottom-style: solid; }
 
 .writer-header { display: flex; gap: 40px; align-items: flex-start; margin-bottom: 50px; }
-.writer-portrait { width: 320px; height: auto; border-radius: var(--radius); border: 6px solid var(--surface); box-shadow: 0 8px 25px var(--shadow); flex-shrink: 0; object-fit: cover; }
+.writer-portrait { width: 320px; height: auto; border-radius: var(--radius); border: 4px dashed var(--border); box-shadow: 0 8px 20px rgba(0,0,0,0.05); flex-shrink: 0; object-fit: cover; }
 .writer-info h1 { font-family: var(--font-body); font-size: 34px; margin-top: 0; margin-bottom: 10px; font-weight: normal; color: var(--text); }
 .writer-years { font-size: 18px; color: var(--muted); margin-bottom: 20px; font-style: italic; }
 .writer-bio { font-size: 17px; line-height: 1.8; text-indent: 1.5em; text-align: justify; }
-.works-title { font-family: var(--font-body); font-size: 28px; margin-top: 30px; margin-bottom: 20px; border-bottom: 2px solid var(--border); padding-bottom: 10px; font-weight: normal; }
+.works-title { font-family: var(--font-body); font-size: 28px; margin-top: 30px; margin-bottom: 25px; border-bottom: 2px dashed var(--border); padding-bottom: 10px; font-weight: normal; }
 
 .reader-container { max-width: 800px; }
-.reader { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 60px; box-shadow: 0 10px 30px var(--shadow); }
-.reader h1 { font-family: var(--font-body); font-size: 38px; margin: 0 0 10px; text-align: center; font-weight: normal; color: var(--text); }
+.reader { background: var(--surface); border: 2px dashed var(--border); border-radius: var(--radius); padding: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+.reader h1 { font-family: var(--font-body); font-size: 36px; margin: 0 0 10px; text-align: center; font-weight: normal; color: var(--text); }
 .reader-author { font-size: 20px; color: var(--muted); margin: 0 0 5px; font-style: italic; text-align: center; }
-.reader-meta { font-size: 14px; color: var(--accent); margin: 0 0 40px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
+.reader-meta { font-size: 14px; color: var(--accent); margin: 0 0 35px; text-align: center; font-weight: bold; text-transform: uppercase; letter-spacing: 1.5px; }
 
-.reader-toolbar { display: flex; justify-content: flex-end; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+.reader-toolbar { display: flex; justify-content: flex-end; align-items: center; padding: 15px 0; border-bottom: 2px dashed var(--border); margin-bottom: 30px; }
 .font-controls { display: flex; gap: 10px; }
 
-.reader-text { font-family: var(--font-body); font-size: var(--reader-size); line-height: 2; white-space: pre-wrap; text-align: justify; }
-.reader-text p { margin: 0 0 1.5em; text-indent: 2em; }
-.reader-text.poem { text-indent: 0; text-align: left; padding-left: 20px; font-style: italic; }
-.reader-text.poem p { text-indent: 0; margin: 0 0 0.8em; text-align: left; }
+.reader-text { font-family: var(--font-body); font-size: var(--reader-size); line-height: 1.9; white-space: pre-wrap; text-align: justify; }
+.reader-text p { margin: 0 0 1.2em; text-indent: 1.5em; }
+.reader-text.poem { text-indent: 0; text-align: left; padding-left: 20px; }
+.reader-text.poem p { text-indent: 0; margin: 0 0 0.5em; text-align: left; }
 
-.questions { margin-top: 60px; padding: 30px; background: var(--accent-soft); border-radius: var(--radius); }
+.questions { margin-top: 50px; padding: 30px; background: var(--accent-soft); border-radius: var(--radius); border: 1px dashed var(--accent); }
 .questions h2 { font-family: var(--font-body); font-size: 24px; margin: 0 0 20px; font-weight: normal; color: var(--accent); }
 .questions ol { padding-left: 20px; margin: 0; }
 .questions li { font-size: 16px; line-height: 1.6; margin-bottom: 15px; color: var(--text); }
 
 .reader-nav-top { display: flex; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
-.reader-nav-bottom { display: flex; justify-content: space-between; margin-top: 60px; border-top: 1px solid var(--border); padding-top: 30px; flex-wrap: wrap; gap: 15px; }
-.reader-nav-bottom .back-link, .reader-nav-top .back-link { margin-bottom: 0; }
+.reader-nav-bottom { display: flex; justify-content: space-between; margin-top: 50px; border-top: 2px dashed var(--border); padding-top: 30px; flex-wrap: wrap; gap: 15px; }
+.reader-nav-bottom .back-link, .reader-nav-top .back-link { margin-bottom: 0; border-bottom: none; }
 
 .hidden { display: none; }
 
 @media (max-width: 768px) {
-  .topbar { padding: 15px; flex-direction: column; gap: 15px; }
+  .topbar { padding: 15px 20px; }
+  .container { padding-top: 90px; }
   .hero h1 { font-size: 28px; }
   .writer-header { flex-direction: column; align-items: center; text-align: center; }
   .writer-bio { text-indent: 0; text-align: left; }
-  .writer-portrait { width: 100%; max-width: 300px; } 
+  .writer-portrait { width: 100%; max-width: 280px; } 
   .reader { padding: 25px; }
   .reader h1 { font-size: 28px; }
-  .reader-nav-top, .reader-nav-bottom { flex-direction: column; align-items: center; }
+  .reader-nav-top, .reader-nav-bottom { flex-direction: column; align-items: flex-start; }
                     }
